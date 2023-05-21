@@ -5,7 +5,7 @@ $password = "";
 $database = "myshop";
 
 //create connection
-$conn = mysqli_connect($servername,$username,$password,$database);
+$conn = new mysqli($servername,$username,$password,$database);
 
 $id = "";
 $name = "";
@@ -19,7 +19,7 @@ $successMessage = "";
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     //GET method: Show the data of the client
 
-    if (isset($_GET["id"])){
+    if (!isset($_GET["id"])){
         header("location: /calbeans php/index.php");
         exit;
     }
@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $row = $result->fetch_assoc();
 
     if(!$row){
-        header("location /calbeans php/index.php");
+        header("location: /calbeans php/index.php");
         exit;
     }
 
@@ -56,9 +56,9 @@ else{
 
     }
 
-        $sql = "UPDATE clients" .
-                "SET name = '$name', email = '$email', phone = '$phone', address = '$address' " . 
-                "WHERE id = $id";
+        $sql = "UPDATE clients " .
+        "SET name = '$name', email = '$email', phone = '$phone', address = '$address' " . 
+        "WHERE id = $id";
 
         $result = $conn->query($sql);
 
@@ -102,29 +102,29 @@ else{
         ?>
 
         <form method="post">
-            <input type="hidden" value="<?php echo $id;?>">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="name" value="<?php echo $name;?>">
+                    <input type="text" class="form-control" name="name" value="<?php echo $name; ?>">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="email" value="<?php echo $email;?>">
+                    <input type="text" class="form-control" name="email" value="<?php echo $email; ?>">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Phone</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="phone" value="<?php echo $phone;?>">
+                    <input type="text" class="form-control" name="phone" value="<?php echo $phone; ?>">
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Address</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="address" value="<?php echo $address;?>">
+                    <input type="text" class="form-control" name="address" value="<?php echo $address; ?>">
                 </div>
             </div>
             

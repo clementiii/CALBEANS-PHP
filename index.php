@@ -34,13 +34,20 @@
                     
                     //create connection
                     $conn = mysqli_connect($servername,$username,$password,$database);
+
                     //Check connection
                     if(!$conn){
                          die("Connection failed: ".mysqli_connect_error());
                     }
-                    //read data of each row
+                    //read all row from database table
                     $sql = "SELECT * FROM clients";
                     $result = $conn->query($sql);
+
+                    if(!$result){
+                        die("Invalid query: " . $conn->error);
+                    }
+
+                    //read data of each row
                     while($row = $result->fetch_assoc()){
                         echo "
                         <tr>
