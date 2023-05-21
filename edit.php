@@ -9,6 +9,7 @@ $conn = new mysqli($servername,$username,$password,$database);
 
 $id = "";
 $name = "";
+$order = "";
 $email = "";
 $phone = "";
 $address = "";
@@ -37,6 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     }
 
     $name = $row["name"];
+    $order = $row["order"];
     $email = $row["email"];
     $phone = $row["phone"];
     $address = $row["address"];
@@ -45,19 +47,20 @@ else{
     // POST method: Update the data of the client
     $id = $_POST["id"];
     $name = $_POST["name"];
+    $order = $_POST["order"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $address = $_POST["address"];
 
     do{
-        if (empty($id) ||empty($name) ||empty($email) ||empty($phone) ||empty($address)){
+        if (empty($id) ||empty($name) ||empty($order) ||empty($email) ||empty($phone) ||empty($address)){
             $errorMessage = "All the fields are required";
             break;
 
     }
 
         $sql = "UPDATE clients " .
-        "SET name = '$name', email = '$email', phone = '$phone', address = '$address' " . 
+        "SET name = '$name', user_order = '$order', email = '$email', phone = '$phone', address = '$address' " . 
         "WHERE id = $id";
 
         $result = $conn->query($sql);
@@ -107,6 +110,12 @@ else{
                 <label class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="name" value="<?php echo $name; ?>">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Order</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="order" value="<?php echo $order;?>">
                 </div>
             </div>
             <div class="row mb-3">

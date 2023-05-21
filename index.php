@@ -17,6 +17,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Order</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Address</th>
@@ -53,6 +54,7 @@
                         <tr>
                             <td>$row[id]</td>
                             <td>$row[name]</td>
+                            <td>$row[user_order]</td>
                             <td>$row[email]</td>
                             <td>$row[phone]</td>
                             <td>$row[address]</td>

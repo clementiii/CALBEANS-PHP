@@ -8,6 +8,7 @@
  $conn = mysqli_connect($servername,$username,$password,$database);
 
     $name = "";
+    $order ="";
     $email = "";
     $phone = "";
     $address = "";
@@ -17,19 +18,20 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $name = $_POST['name'];
+        $order = $_POST['order'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $address = $_POST['address'];
 
         do {
-            if (empty($name) ||empty($email) ||empty($phone) ||empty($address)){
+            if (empty($name) ||empty($order) ||empty($email) ||empty($phone) ||empty($address)){
                 $errorMessage = "All the fields are required";
                 break;
             }
 
             //add new client to database
-            $sql = "INSERT INTO clients (name, email,phone,address)" .
-                    "VALUES ('$name', '$email', '$phone', '$address')";
+            $sql = "INSERT INTO clients (name, user_order, email, phone, address)" .
+                    "VALUES ('$name', '$order', '$email', '$phone', '$address')";
             $result = $conn->query($sql);
 
             if(!$result){
@@ -38,6 +40,7 @@
             }
 
             $name = "";
+            $order = "";
             $email = "";
             $phone = "";
             $address = "";
@@ -81,6 +84,12 @@
                 <label class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="name" value="<?php echo $name;?>">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Order</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="order" value="<?php echo $order;?>">
                 </div>
             </div>
             <div class="row mb-3">
