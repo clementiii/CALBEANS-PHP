@@ -22,7 +22,7 @@
         $address = $_POST['address'];
 
         do {
-            if (empty($name) ||empty($email) ||empty($phone ||empty($address))){
+            if (empty($name) ||empty($email) ||empty($phone) ||empty($address)){
                 $errorMessage = "All the fields are required";
                 break;
             }

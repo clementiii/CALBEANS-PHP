@@ -52,7 +52,7 @@
                             <td>$row[created_at]</td>
                             <td>
                                 <a class='btn btn-primary btn-sm' href='/calbeans php/edit.php?id=$row[id]'>Edit</a>
-                                <a class='btn btn-danger btn-sm' href='/calbeans php/edit.php?id=$row[id]'>Delete</a>
+                                <a class='btn btn-danger btn-sm' href='/calbeans php/delete.php?id=$row[id]'>Delete</a>
                             </td>
                         </tr>
                     ";
